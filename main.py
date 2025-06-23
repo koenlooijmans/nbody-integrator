@@ -11,8 +11,8 @@ def main():
 	positions = []
 	velocities = []
 
-	while integrator.time < 5:
-		integrator.evolve(1e-5)
+	while integrator.time < simulation_time:
+		integrator.evolve(timestep)
 		positions.append(integrator.get_positions())
 		velocities.append(integrator.get_velocities())
 		print(integrator.time)
@@ -20,15 +20,8 @@ def main():
 	positions = np.array(positions)
 	velocities = np.array(velocities)
 
-	print(np.shape(positions))
-
-	plt.plot(np.sqrt(np.sum(velocities**2, axis=-1)))
-	plt.plot(velocities[:, :, 0])
-	plt.plot(velocities[:, :, 1])
-	plt.show()
-
 	for i in range(n_stars):
-		plt.plot(positions[:, i,0], positions[:,i, 1])
+		plt.plot(positions[:, i, 0], positions[:,i, 1])
 	plt.show()
 
 if __name__ == '__main__':

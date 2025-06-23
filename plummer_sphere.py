@@ -28,6 +28,7 @@ class PlummerSphere(object):
 		rejected_samples = np.ones(N, dtype=bool)
 		v = np.zeros(N, dtype=float)
 
+		#Uses rejection sampling to sample velocities
 		while rejected_samples.any():
 			X = np.random.uniform(0, 1, size=N)
 			v[rejected_samples] = X[rejected_samples] * v_esc[rejected_samples]
